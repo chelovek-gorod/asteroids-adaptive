@@ -24,6 +24,10 @@ function updateSizes() {
     vcx = Math.floor(vw / 2); // определяем координату X центра холста
     vcy = Math.floor(vh / 2); // определяем координату Y центра холста
 
+    // обновляем позиции оружия
+    gunBase.updatePosition();
+    laserGun.updatePosition();
+
     TestTouchScreen(); // проверка тач-скрина
 }
 updateSizes();
@@ -191,7 +195,7 @@ function gameOver() {
     exitFullscreen();
     // обновляем размеры экрана
     updateSizes();
-    
+
     isGameStart = false; // меняем состояние игры (останавливаем обновление холста)
     ctx.clearRect(0, 0, vw, vh); // числим весь холст
 
@@ -657,6 +661,10 @@ aim.draw = function( frameTimeout ) {
 const gunBase = new Sprite ('gun_base_320x100x1frame.png', 320, 100, 1);
 gunBase.x = vcx - 160;
 gunBase.y = vh - 100;
+gunBase.updatePosition = function() {
+    gunBase.x = vcx - 160;
+    gunBase.y = vh - 100;
+}
 gunBase.draw = function() {
     ctx.drawImage( 
         this.img,    // Объект Image или canvas 
@@ -676,6 +684,13 @@ laserGun.angle = 0;
 laserGun.x = vcx;
 laserGun.y = vh;
 laserGun.maxDistancePoint = Math.sqrt( Math.pow( vcx, 2) + Math.pow( vh, 2) );
+
+laserGun.updatePosition = function() {
+    laserGun.angle = 0;
+    laserGun.x = vcx;
+    laserGun.y = vh;
+    laserGun.maxDistancePoint = Math.sqrt( Math.pow( vcx, 2) + Math.pow( vh, 2) );
+}
 
 laserGun.draw = function() {
 
