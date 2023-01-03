@@ -2,9 +2,9 @@
 
 let isAllVariablesDefined = false;
 
-/*************************
+/*****************
  * 
- *   ПОДГОТОВКА ХОЛСТА
+ *   ПОДГОТОВКА 
  */
 
 const canvas = document.createElement('canvas'); // создаём холст
@@ -59,6 +59,14 @@ function exitFullscreen() {
 
 // массив файлов загрузки
 let loadingsArr = [];
+// функция показа блоков с сообщениями
+const loadStateDiv = document.createElement('div');
+loadStateDiv.className = 'loading';
+loadStateDiv.innerText = 'loading';
+document.body.append(loadStateDiv);
+function loadState() {
+    loadStateDiv.innerText = `${loadingsArr.length} files loading...`;
+}
 
 // старт игры
 let isGameStart = false;
@@ -127,9 +135,7 @@ class Sound {
             // удаляем загруженный звук из массива загрузок
             loadingsArr = loadingsArr.filter( object => !object.isLoaded );
             if (loadingsArr.length === 0) gameReady(); // если в массиве загрузок больше нет файлов - вызываем функцию "gameReady()"
-            else message(`Images onload ${loadingsArr.length}`);
-            console.log(loadingsArr.length);
-            console.log('AUDIO');
+            else loadState();
         };
         loadingsArr.push(this);
     }
@@ -163,8 +169,7 @@ class Sprite {
             // удаляем загруженную картинку из массива загружаемых картинок
             loadingsArr = loadingsArr.filter( sprite => !sprite.isLoaded );
             if (loadingsArr.length === 0) gameReady(); // если в массиве загрузок больше нет файлов - вызываем функцию "gameReady()"
-            else message(`Images onload ${loadingsArr.length}`);
-            console.log(loadingsArr.length);
+            else loadState();
         };
         // добавляем в массив загрузак картинку, ожидающую загрузку
         loadingsArr.push(this);
@@ -178,7 +183,7 @@ class Sprite {
 
 // вызываем, когда все картинки загрузятся
 function gameReady() {
-    console.log('ALL SOURCES IS LOADED');
+    loadStateDiv.remove();
     // создаём кнопку "START"
     const startButton = document.createElement('div');
     startButton.id = 'startButton';
