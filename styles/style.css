@@ -211,6 +211,13 @@ canvas {
         width: 90%;
         text-align: right;
     }
+
+    #finalMessage {
+        width: 90%;
+        height: 60px;
+        line-height: 60px;
+        font-size: 60px;
+    }
 }
 
 @media (max-width: 780px) {
@@ -221,6 +228,16 @@ canvas {
     .left-board div {
         font-size: 12px;
     }
+
+    .message {
+        font-size: 30px;
+    }
+
+    #finalMessage {
+        height: 45px;
+        line-height: 45px;
+        font-size: 45px;
+    }
 }
 
 @media (max-width: 580px) {
@@ -230,5 +247,15 @@ canvas {
 
     .left-board div {
         font-size: 9px;
+    }
+
+    .message {
+        font-size: 20px;
+    }
+
+    #finalMessage {
+        height: 30px;
+        line-height: 30px;
+        font-size: 30px;
     }
 }
