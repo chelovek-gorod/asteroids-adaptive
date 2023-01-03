@@ -727,11 +727,13 @@ laserGun.draw = function() {
 
 // выстрел лазера
 function laserShut() {
-    playSePlayer( 'se_laser' );
-    cursor.frameX = 0;
-    cursor.isReady = false;
-
-    laserLightsArr.push( new LaserLight() );
+    if (cursor.isReady) {
+        playSePlayer( 'se_laser' );
+        cursor.frameX = 0;
+        cursor.isReady = false;
+    
+        laserLightsArr.push( new LaserLight() );
+    }
 }
 
 // луч
@@ -1157,7 +1159,7 @@ let isButtonOnclick = false;
 
 document.addEventListener('click', () => {
     if (isButtonOnclick) isButtonOnclick = false;
-    else if (cursor.isReady && !isTouchScreen) laserShut();
+    else if (!isTouchScreen) laserShut();
 });
 
 /*****************************************************
