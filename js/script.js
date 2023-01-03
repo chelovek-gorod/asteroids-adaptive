@@ -30,13 +30,13 @@ updateSizes();
 
 //
 function enterFullScreen() {
-    if(element.requestFullscreen) {
+    if(document.body.requestFullscreen) {
         document.body.requestFullscreen();
-    }else if (element.mozRequestFullScreen) {
+    }else if (document.body.mozRequestFullScreen) {
         document.body.mozRequestFullScreen();     // Firefox
-    }else if (element.webkitRequestFullscreen) {
+    }else if (document.body.webkitRequestFullscreen) {
         document.body.webkitRequestFullscreen();  // Safari
-    }else if(element.msRequestFullscreen) {
+    }else if(document.body.msRequestFullscreen) {
         document.body.msRequestFullscreen();      // IE/Edge
     }
 };
