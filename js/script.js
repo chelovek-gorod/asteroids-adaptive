@@ -1,5 +1,7 @@
 'use strict';
 
+let isAllVariablesDefined = false;
+
 /*************************
  * 
  *   ПОДГОТОВКА ХОЛСТА
@@ -25,8 +27,10 @@ function updateSizes() {
     vcy = Math.floor(vh / 2); // определяем координату Y центра холста
 
     // обновляем позиции оружия
-    gunBase.updatePosition();
-    laserGun.updatePosition();
+    if(isAllVariablesDefined) {
+        gunBase.updatePosition();
+        laserGun.updatePosition();
+    }
 
     TestTouchScreen(); // проверка тач-скрина
 }
@@ -139,7 +143,7 @@ class Sprite {
             // удаляем загруженную картинку из массива загружаемых картинок
             loadingsArr = loadingsArr.filter( sprite => !sprite.isLoaded );
             if (loadingsArr.length === 0) gameReady(); // если в массиве загрузок больше нет файлов - вызываем функцию "gameReady()"
-            else console.log(loadingsArr); // иначе - выводим в консоль массив, с изображениями, ожидающими загрузки
+            else message(`Images onload ${loadingsArr.length}`);
         };
         // добавляем в массив загрузак картинку, ожидающую загрузку
         loadingsArr.push(this);
@@ -1249,3 +1253,4 @@ function animation( timeStamp ) {
     // запускаем занова анимацию с 60 fps
     if (isGameStart) requestAnimationFrame( animation );
 }
+isAllVariablesDefined = true;

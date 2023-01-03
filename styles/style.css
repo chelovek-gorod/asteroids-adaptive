@@ -178,7 +178,7 @@ canvas {
 .shut {
     position: absolute;
     bottom: 10px;
-    left: calc(50vw - 35px);
+    left: 10px;
     box-sizing: border-box;
     width: 70px;
     height: 70px;
@@ -190,4 +190,22 @@ canvas {
     background-image: url(../src/images/fire.png);
     background-size: 24px;
     background-position: center 4px;
+}
+
+@media (max-width: 1280px) {
+    .board {
+        height: 135px;
+        background-repeat: repeat;
+        flex-wrap: wrap;
+    }
+
+    .board-left {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: flex-end;
+        flex-direction: column;
+        align-content: flex-end;
+
+        align-content: right;
+    }
 }
