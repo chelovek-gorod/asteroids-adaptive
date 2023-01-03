@@ -116,6 +116,28 @@ function playBgMusic() {
     BG_MUSIC.addEventListener('ended', playBgMusic);
 }
 
+const soundEffectsArr = ['se_beep', 'se_explosion', 'se_glass', 'se_laser', 'se_target', 'se_upgrade'];
+class Sound {
+    constructor (sound) {
+        this.audio = new Audio();
+        this.audio.src = SOUNDS_PATH + sound +'.mp3';
+        this.isLoaded = false;
+        this.audio.oncanplaythrough = () => {
+            this.isLoaded = true;
+            // удаляем загруженный звук из массива загрузок
+            loadingsArr = loadingsArr.filter( object => !object.isLoaded );
+            if (loadingsArr.length === 0) gameReady(); // если в массиве загрузок больше нет файлов - вызываем функцию "gameReady()"
+            else message(`Images onload ${loadingsArr.length}`);
+            console.log(loadingsArr.length);
+            console.log('AUDIO');
+        };
+        loadingsArr.push(this);
+    }
+}
+
+bgMusicsArr.forEach( audio => new Sound(audio) );
+soundEffectsArr.forEach( audio => new Sound(audio) );
+
 /*************************
  * 
  *   ЗАГРУЗКА СПРАЙТОВ
@@ -142,6 +164,7 @@ class Sprite {
             loadingsArr = loadingsArr.filter( sprite => !sprite.isLoaded );
             if (loadingsArr.length === 0) gameReady(); // если в массиве загрузок больше нет файлов - вызываем функцию "gameReady()"
             else message(`Images onload ${loadingsArr.length}`);
+            console.log(loadingsArr.length);
         };
         // добавляем в массив загрузак картинку, ожидающую загрузку
         loadingsArr.push(this);
