@@ -31,8 +31,6 @@ function updateSizes() {
         gunBase.updatePosition();
         laserGun.updatePosition();
     }
-
-    TestTouchScreen(); // проверка тач-скрина
 }
 updateSizes();
 
@@ -68,7 +66,7 @@ let isGameStart = false;
 // проверка тач-скрина
 let isTouchScreen = false;
 function TestTouchScreen() {
-    if( !!('ontouchstart' in window) ) {
+    if( !!('ontouchstart' in window) || window.innerWidth < 1280 ) {
         const shutDiv = document.createElement('div');
         shutDiv.className = 'shut';
         shutDiv.onclick = laserShut;
@@ -181,6 +179,8 @@ function gameStart() {
     document.body.append(leftBoard);
     document.body.append(rightBoard);
     boardUpdate(); // запускаем функцию обновления информации на понелях (leftBoard и rightBoard)
+
+    TestTouchScreen(); // проверка тач-скрина
 
     // запускаем анимацию с ~60 fps
     requestAnimationFrame( animation );
