@@ -1,0 +1,193 @@
+@font-face {
+    font-family: Audiowide;
+    src: url(../src/fonts/Audiowide-Az09.ttf);
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #000000;
+    overflow: hidden;
+
+    font-family: Audiowide, Arial, sans-serif;
+    color: #00ff00;
+    /**/
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+canvas {
+    display: block;
+    padding: 0;
+    margin: 0;
+    border: none;
+    cursor: none;
+    background: center / cover no-repeat url(../src/backgrounds/bg-space.jpg);
+}
+
+#startButton {
+    position: absolute;
+    width: 160px;
+    height: 40px;
+    border: solid 2px #ffffff;
+    color: #00ff00;
+    border-radius: 20px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 24px;
+    background-color: #000000;
+    box-shadow: none;
+    cursor: pointer;
+    transition: box-shadow .3s, border-color .3s;
+}
+#startButton:hover {
+    border-color: #00ff00;
+    box-shadow: inset 0 0 12px 0px #06ff00;
+}
+
+.message {
+    position: absolute;
+    color: #00ff00;
+    text-align: center;
+    font-size: 50px;
+    animation: move-up 1s linear;
+}
+
+@keyframes move-up {
+      0% {opacity: 1; margin-bottom: 0;}
+    100% {opacity: 0; margin-bottom: 120px;}
+}
+
+#finalMessage {
+    position: absolute;
+    width: 800px;
+    height: 100px;
+    color: #00ff00;
+    line-height: 100px;
+    text-align: center;
+    font-size: 100px;
+}
+
+.board {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    box-sizing: border-box;
+    height: 70px;
+    width: calc(50vw - 100px);
+    border: 2px solid #1c0c82;
+    background-image: url(../src/images/board-a.png);
+    background-position: center;
+    background-repeat: repeat-x;
+    cursor: none;
+}
+
+.left-board {
+    left: 0;
+    border-radius: 0 50px 0 0;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.left-board div {
+    box-sizing: border-box;
+    width: 50%;
+    text-align: center;
+}
+
+.right-board {
+    right: 0;
+    border-radius: 50px 0 0 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-board div {
+    box-sizing: border-box;
+    width: 70px;
+    height: 50px;
+    margin: 0 10px;
+    border: 2px solid #00ff00;
+    border-radius: 20px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    box-shadow: inset 0 0 12px 0px #06ff00;
+}
+
+.right-board .grayscale {
+    filter: grayscale(1);
+    box-shadow: none;
+}
+
+.right-board div span {
+    display: block;
+    position: relative;
+    top: 32px;
+    font-size: 8px;
+    text-align: center;
+}
+
+.repair {
+    background-image: url(../src/images/repair.png);
+    background-size: 26px;
+    background-position: center 4px;
+}
+
+.upgrade-power {
+    background-image: url(../src/images/power.png);
+    background-size: 24px;
+    background-position: center 4px;
+}
+
+.upgrade-aiming {
+    background-image: url(../src/images/aiming.png);
+    background-size: 24px;
+    background-position: center 4px;
+}
+
+.upgrade-reloading {
+    background-image: url(../src/images/reloading.png);
+    background-size: 20px;
+    background-position: center 5px;
+}
+
+.upgrade-armor {
+    background-image: url(../src/images/armor.png);
+    background-size: 24px;
+    background-position: center 4px;
+}
+
+.detector {
+    background-image: url(../src/images/detect.png);
+    background-size: 24px;
+    background-position: center 4px;
+}
+
+.shut {
+    position: absolute;
+    bottom: 10px;
+    left: calc(50vw - 35px);
+    box-sizing: border-box;
+    width: 70px;
+    height: 70px;
+    border: 2px solid #ff0000;
+    border-radius: 35px;
+    background-repeat: no-repeat;
+    box-shadow: inset 0 0 12px 0px #ff0000;
+
+    background-image: url(../src/images/fire.png);
+    background-size: 24px;
+    background-position: center 4px;
+}
